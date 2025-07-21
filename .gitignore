@@ -1,0 +1,16 @@
+
+# Gradle files
+.gradle/
+build/
+gradle/
+gradlew
+gradlew.bat
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Build output
+out/
