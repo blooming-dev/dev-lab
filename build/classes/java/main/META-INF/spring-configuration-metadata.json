@@ -1,0 +1,21 @@
+{
+  "groups": [
+    {
+      "name": "spring.datasource.master",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.devlab.studio.infrastructure.datasource.DataSourceConfig",
+      "sourceMethod": "masterDataSource()"
+    },
+    {
+      "name": "spring.datasource.slave",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.devlab.studio.infrastructure.datasource.DataSourceConfig",
+      "sourceMethod": "slaveDataSource()"
+    }
+  ],
+  "properties": [],
+  "hints": [],
+  "ignored": {
+    "properties": []
+  }
+}

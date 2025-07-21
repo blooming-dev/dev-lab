@@ -1,0 +1,42 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  datasource:
+    master:
+      pool-name: hikari-master-pool
+      jdbc-url: jdbc:mysql://localhost:3306/user
+      username: sa
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    slave:
+      pool-name: hikari-slave-pool
+      jdbc-url: jdbc:mysql://localhost:3308/user
+      username: sa
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: api
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+
+logging:
+  level:
+    org.springframework.jdbc.datasource: TRACE
+    org.springframework.transaction: TRACE
+    org.springframework.orm.jpa: DEBUG
+
