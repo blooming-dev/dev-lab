@@ -11,17 +11,17 @@ spring:
   datasource:
     master:
       pool-name: hikari-master-pool
-      jdbc-url: jdbc:mysql://localhost:3306/user
       username: sa
       password: 1234
+      jdbc-url: jdbc:mysql://localhost:3306/user
       driver-class-name: com.mysql.cj.jdbc.Driver
 
-    slave:
-      pool-name: hikari-slave-pool
-      jdbc-url: jdbc:mysql://localhost:3308/user
-      username: sa
-      password: 1234
-      driver-class-name: com.mysql.cj.jdbc.Driver
+#    slave:
+#      pool-name: hikari-slave-pool
+#      jdbc-url: jdbc:mysql://localhost:3308/user
+#      username: sa
+#      password: 1234
+#      driver-class-name: com.mysql.cj.jdbc.Driver
 
   kafka:
     bootstrap-servers: localhost:9092

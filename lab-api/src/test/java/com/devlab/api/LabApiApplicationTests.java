@@ -1,13 +1,13 @@
-package com.devlab.studio;
+package com.devlab.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DevLabApplicationTests {
+class LabApiApplicationTests {
 
-  @Test
-  void contextLoads() {
-  }
+	@Test
+	void contextLoads() {
+	}
 
 }

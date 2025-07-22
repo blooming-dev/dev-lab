@@ -45,18 +45,18 @@ services:
       - '3306:3306'
     volumes:
       - master:/var/lib/mysql
-  slave:
-    container_name: 'mysql-user-slave'
-    image: 'mysql:latest'
-    environment:
-      - 'MYSQL_PASSWORD=1234'
-      - 'MYSQL_ROOT_PASSWORD=1234'
-      - 'MYSQL_USER=sa'
-      - 'MYSQL_DATABASE=user'
-    ports:
-      - '3308:3306'
-    volumes:
-      - slave:/var/lib/mysql
+#  slave:
+#    container_name: 'mysql-user-slave'
+#    image: 'mysql:latest'
+#    environment:
+#      - 'MYSQL_PASSWORD=1234'
+#      - 'MYSQL_ROOT_PASSWORD=1234'
+#      - 'MYSQL_USER=sa'
+#      - 'MYSQL_DATABASE=user'
+#    ports:
+#      - '3308:3306'
+#    volumes:
+#      - slave:/var/lib/mysql
 networks:
   mysql-net:
     driver: bridge

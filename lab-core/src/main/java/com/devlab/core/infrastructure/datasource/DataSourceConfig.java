@@ -1,6 +1,6 @@
-package com.devlab.studio.infrastructure.datasource;
+package com.devlab.core.infrastructure.datasource;
 
-import com.devlab.studio.infrastructure.datasource.ReplicationRoutingDataSource.RoutingDataType;
+import com.devlab.core.infrastructure.datasource.ReplicationRoutingDataSource.RoutingDataType;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,9 +24,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Slf4j
 @Configuration
 @EnableJpaRepositories(
-    basePackages = "com.devlab.studio",
-    entityManagerFactoryRef = "userEntityManagerFactory",
-    transactionManagerRef = "userTransactionManager"
+    basePackages = "com.devlab.core",
+    entityManagerFactoryRef = "devLabEntityManagerFactory",
+    transactionManagerRef = "devLabTransactionManager"
 )
 public class DataSourceConfig {
 
@@ -44,26 +44,28 @@ public class DataSourceConfig {
 
   @Bean
   @Primary
-  public LocalContainerEntityManagerFactoryBean userEntityManagerFactory(
+  public LocalContainerEntityManagerFactoryBean devLabEntityManagerFactory(
       @Qualifier("defaultDataSource") DataSource defaultDataSource,
       EntityManagerFactoryBuilder builder
   ) {
 
     return builder
         .dataSource(defaultDataSource)
-        .packages("com.custom.io")
+        .packages("com.devlab.core")
         .persistenceUnit("default")
         .build();
   }
 
   @Bean
   @Primary
-  public PlatformTransactionManager userTransactionManager(
-      @Qualifier("userEntityManagerFactory") EntityManagerFactory factory
+  public PlatformTransactionManager devLabTransactionManager(
+      @Qualifier("devLabEntityManagerFactory") EntityManagerFactory factory
   ) {
     return new JpaTransactionManager(factory);
   }
 
+
+  // todo: master, slave 추후 분리
   @Bean
   public DataSource routingDataSource(
       @Qualifier("masterDataSource") DataSource masterDataSource,

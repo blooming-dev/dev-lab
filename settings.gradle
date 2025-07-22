@@ -1,1 +1,4 @@
-rootProject.name = 'devlab'
+rootProject.name = 'dev-lab-multi-module'
+
+include 'lab-core'
+include 'lab-api'
