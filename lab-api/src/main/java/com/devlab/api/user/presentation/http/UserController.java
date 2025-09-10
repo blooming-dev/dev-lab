@@ -1,14 +1,12 @@
 package com.devlab.api.user.presentation.http;
 
-import com.devlab.api.user.UserService;
-import com.devlab.api.user.presentation.http.response.UserResponse;
-import jakarta.persistence.EntityNotFoundException;
+import com.devlab.api.user.application.component.UserSignUpComponent;
+import com.devlab.api.user.presentation.http.dto.UserSignUpDto;
+import com.devlab.api.user.presentation.http.request.LoginRequest;
+import com.devlab.api.user.presentation.http.request.SignUpRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RequestMapping("/api/v1/user")
@@ -16,16 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-  private final UserService userService;
+  private final UserSignUpComponent userSignUpComponent;
 
-  @GetMapping("/{id}")
-  public ResponseEntity<?> findById(
-      @PathVariable Long id
-  ) {
+  @PostMapping("/signup")
+  public ResponseEntity<?> signup(@RequestBody SignUpRequest request) {
+    return ResponseEntity.ok(userSignUpComponent.create(UserSignUpDto.from(request)));
+  }
 
-    var user = userService.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("User not found"));
-
-    return ResponseEntity.ok(UserResponse.of(user));
+  @PostMapping("/login")
+  public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    return ResponseEntity.ok(userSignUpComponent.login(request.getEmail(), request.getPassword()));
   }
 }

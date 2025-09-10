@@ -40,3 +40,7 @@ logging:
     org.springframework.transaction: TRACE
     org.springframework.orm.jpa: DEBUG
 
+jwt:
+  secret: N9sufzZq9J3dK+S6zv8VwBB9hNGilSlv1wU9hDqvNMo=
+  expiration: 86400
+  refresh-expiration: 604800
